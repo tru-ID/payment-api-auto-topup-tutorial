@@ -1,7 +1,7 @@
-const truId = require('../api/truId')
+const truApi = require('../api/tru')
 
 async function getPaymentMethod() {
-  const paymentMethods = await truId.getPaymentMethods()
+  const paymentMethods = await truApi.getPaymentMethods()
 
   if (paymentMethods === false) {
     console.log("No available payment methods. Please add a payment method.")
@@ -48,7 +48,7 @@ async function topup(currency, amount) {
     return false
   }
 
-  const topupAttempt = await truId.createTopUp(paymentMethods[0].id, currency, amount)
+  const topupAttempt = await truApi.createTopUp(paymentMethods[0].id, currency, amount)
 
   if (topupAttempt.status === 201) {
     const body = await topupAttempt.json()

@@ -1,4 +1,4 @@
-const truId = require('../api/truId')
+const truApi = require('../api/tru')
 const truPayments = require('../utils/payments')
 
 async function createSIMCheck(req, res) {
@@ -10,7 +10,7 @@ async function createSIMCheck(req, res) {
 
   console.log(`Creating SIMCheck for phone number: ${  phone_number}`)
 
-  const simCheck = await truId.createSIMCheck(phone_number)
+  const simCheck = await truApi.createSIMCheck(phone_number)
 
   const response = await simCheck.json()
 
@@ -23,7 +23,7 @@ async function createSIMCheck(req, res) {
 
     if (topup !== false) {
       console.log('Topup successful.. retrying SIMCheck')
-      const simCheckRetry = await truId.createSIMCheck(phone_number)
+      const simCheckRetry = await truApi.createSIMCheck(phone_number)
     
       const retryResponse = await simCheckRetry.json()
 
