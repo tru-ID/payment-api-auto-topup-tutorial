@@ -15,8 +15,6 @@ async function getPaymentMethod() {
     return false
   }
 
-  paymentMethods[0].expiry_month = 2
-
   const currentMonth = new Date().getMonth() + 1
   const currentYear = new Date().getFullYear()
 
